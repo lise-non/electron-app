@@ -1,5 +1,5 @@
 const { app, BrowserWindow, autoUpdater, dialog } = require("electron");
-require("update-electron-app")();
+const { updateElectronApp } = require("update-electron-app");
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -20,8 +20,3 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
-
-const server = "https://your-deployment-url.com";
-const url = `${server}/update/${process.platform}/${app.getVersion()}`;
-
-autoUpdater.setFeedURL({ url });
